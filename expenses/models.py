@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 
 class Expense(models.Model):
     CATEGORY_CHOICES = [
