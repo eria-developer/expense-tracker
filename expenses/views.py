@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import Expense
 
+def home(request):
+    """manages the homepage"""
+    return render(request, "home.html")
+
 def add_expense(request):
     """handles adding new expense"""
     if request.method == "POST":
