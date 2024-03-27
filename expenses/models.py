@@ -12,8 +12,8 @@ class Expense(models.Model):
     ]
     name = models.CharField(max_length=100, null=False, blank=False)
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
-    quantity = models.DecimalField(decimal_places=2)
-    unit_amount = models.DecimalField(decimal_places=2)
+    quantity = models.DecimalField(max_digits=15, decimal_places=2)
+    unit_amount = models.DecimalField(max_digits=15, decimal_places=2)
     date = models.DateField(default=date.today)
 
     def __str__(self):
