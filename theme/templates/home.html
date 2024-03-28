@@ -1,3 +1,21 @@
-{% extends "base.html" %} {% block content %}
-<div class="mx-auto">hey there</div>
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %} HomePage{% endblock title %}
+
+{% block content %}
+<div class="container mx-48 my-20">
+    <div class="mx-auto">hey there, this is the homepage</div>
+    <div>
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="name">Name of Expense:</label><br>
+            <input type="text" name="name" id="name" class="rounded"><br><br>
+            <label for="category">Category:</label><br>
+            <input type="text" name="name" id="name" class="rounded"><br><br>
+        </form>
+    </div>
+</div>
+
 {% endblock content %}
