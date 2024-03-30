@@ -5,10 +5,5 @@
 {% block title %} HomePage{% endblock title %}
 
 {% block content %}
-<div>
-    hye
-    {% for expense in expenses %}
-    <p>{{expense}}</p>
-    {%endfor%}
-</div>
+{% include "./display_expenses_table.html" %}
 {% endblock content %}
