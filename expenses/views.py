@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Expense
 from .forms import AddExpenseForm
+from django.db.models import F
 
 def home(request):
     """manages the homepage"""
@@ -25,7 +26,8 @@ def add_expense(request):
 
 def expenses(request):
     """handles display of expenses"""
-    expenses = Expense.objects.all()
+    expenses = Expense.objects.annotate(expense_total_quantity=F("quantity") * F("unit_amount"))
+    
     context = {
         "expenses": expenses,
     }
