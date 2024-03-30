@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %} HomePage{% endblock title %}
+
+{% block content %}
+<div>
+    hye
+    {% for expense in expenses %}
+    <p>{{expense}}</p>
+    {%endfor%}
+</div>
+{% endblock content %}
