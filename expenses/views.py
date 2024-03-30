@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Expense
-from .forms import AddExpenseForm
+from .forms import AddExpenseForm, EditExpenseForm
 from django.db.models import F
 
 def home(request):
@@ -33,3 +33,24 @@ def expenses(request):
     }
 
     return render(request, "expenses/expenses.html", context)
+
+
+def edit_expense(request, id):
+    expense = get_object_or_404(Expense, id=id)
+    if request.method == "POST":
+        form = EditExpenseForm(request.POST, instance=expense)
+        if form.is_valid():
+            form.save()
+            return redirect("expenses")
+        else:
+            context = {
+                "form": form,
+            }
+            return render(request, "expenses/edit_expense.html", context)
+    else:
+        form = EditExpenseForm(instance=expense)
+        context = {
+            "form": form,
+        }
+
+        return render(request, "expenses/edit_expense.html", context)

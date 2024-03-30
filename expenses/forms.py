@@ -5,3 +5,9 @@ class AddExpenseForm(ModelForm):
     class Meta:
         model = Expense
         fields = "__all__"
+
+
+class EditExpenseForm(ModelForm):
+    class Meta:
+        model = Expense
+        fields = "__all__"

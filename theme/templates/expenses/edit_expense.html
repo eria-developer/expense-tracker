@@ -1,0 +1,55 @@
+{% extends "../base.html" %} {% block content %}
+<div class="container mx-auto px-4 py-5">
+    <h1 class="text-3xl font-bold mb-4">Edit {{expense.name}} expense</h1>
+    <form action="" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        {%csrf_token%}
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="id_name">Name:</label>
+            <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="text" name="name" value="" maxlength="100" required id="id_name">
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="id_category">Category:</label>
+            <select
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                name="category" required id="id_category">
+                <option value="">---------</option>
+                <option value="Food" selected>Food</option>
+                <option value="Housing">Housing</option>
+                <option value="Transportation">Transportation</option>
+                <option value="Health">Health</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="id_quantity">Quantity:</label>
+            <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="number" name="quantity" value="" step="0.01" required id="id_quantity">
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="id_unit_amount">Unit amount:</label>
+            <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="number" name="unit_amount" value="" step="0.01" required id="id_unit_amount">
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="id_date">Date:</label>
+            <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="text" name="date" value="2024-03-28" required id="id_date"><input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="hidden" name="initial-date" value="2024-03-28" id="initial-id_date">
+        </div>
+
+        <button
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit">
+            Save Changes
+        </button>
+    </form>
+</div>
+{% endblock content %}
