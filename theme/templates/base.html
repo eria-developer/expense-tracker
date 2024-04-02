@@ -12,7 +12,39 @@
 </head>
 
 <body class="bg-gray-50 font-serif leading-normal tracking-normal">
-  {% block content %}{% endblock content %}
+
+  {% include "./navbar.html" %}
+  {% block content %}
+
+
+
+
+
+  {% endblock content %}
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const userMenuButton = document.getElementById('user-menu-button');
+        const userMenu = document.getElementById('user-menu');
+
+        // Toggle the dropdown menu when the button is clicked
+        userMenuButton.addEventListener('click', function() {
+            const expanded = userMenuButton.getAttribute('aria-expanded') === 'true' || false;
+            userMenuButton.setAttribute('aria-expanded', !expanded);
+            userMenu.classList.toggle('hidden');
+        });
+
+        // Close the dropdown menu when clicking outside of it
+        document.addEventListener('click', function(event) {
+            const isClickInside = userMenu.contains(event.target) || userMenuButton.contains(event.target);
+            if (!isClickInside) {
+                userMenuButton.setAttribute('aria-expanded', 'false');
+                userMenu.classList.add('hidden');
+            }
+        });
+    });
+</script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>

@@ -5,16 +5,20 @@
 {% block title %} HomePage{% endblock title %}
 
 {% block content %}
-<div class="container mx-48 my-20">
-    <div class="mx-auto">hey there, this is the homepage</div>
-    <div>
-        <form action="" method="post">
-            {% csrf_token %}
-            <label for="name">Name of Expense:</label><br>
-            <input type="text" name="name" id="name" class="rounded"><br><br>
-            <label for="category">Category:</label><br>
-            <input type="text" name="name" id="name" class="rounded"><br><br>
-        </form>
+
+<div class="container mx-16 mt-4">
+
+    <div class="flex gap-4 mb-4">
+        <div class="flex-initial bg-gray-300 rounded py-2 px-8  w-1/4">Hey <strong>
+                {{ user}}</strong>, am glad to
+            see you back</div>
+    </div>
+
+    <div class="flex gap-4">
+        <div class="flex-initial bg-gray-200 rounded py-4 px-8">
+            <h1>Current Month Budget: {{budget}}</h1>
+            <button class="bg-indigo-600 py-1 px-2 rounded mt-2 text-gray-200 font-bold">Set New</button>
+        </div>
     </div>
 </div>
 
