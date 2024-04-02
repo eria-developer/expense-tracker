@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Expense
-from .forms import AddExpenseForm, EditExpenseForm
+from .forms import AddExpenseForm, EditExpenseForm, CustomUserCreationForm
 from django.db.models import F
 from django.contrib import messages
+from django.contrib.auth import login
 
 
 def home(request):
@@ -65,3 +66,19 @@ def delete_expense(request, id):
     expense = get_object_or_404(Expense, id=id)
     expense.delete()
     return redirect("expenses")
+
+
+def signup(request):
+    if request.method == "POST":
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, "You have successfully loged in!!")
+            return redirect("home")
+    else:
+        form = CustomUserCreationForm()
+        context = {
+            "form": form
+        }
+    return render(request, "expenses/signup.html", context)
