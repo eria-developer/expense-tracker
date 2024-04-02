@@ -1,5 +1,10 @@
 from django.db import models
 from datetime import date
+from django.contrib.auth.models import AbstractUser
+
+
+class CustomUser(AbstractUser):
+    minimum_salary = models.IntegerField(blank=True, null=True)
 
 class Expense(models.Model):
     CATEGORY_CHOICES = [
