@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %} Sign up{% endblock title %}
+
+{% block content %}
+<div class="container mx-auto my-20">
+
+
+    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="" method="post">
+        <h2 class="text-xl text-extrabold text-center">Sign Up For an account</h2>
+        {% csrf_token %}
+
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="id_username">Username:</label>
+            <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
+                type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus
+                required aria-describedby="id_username_helptext" id="id_username">
+        </div>
+
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="id_email">Email address:</label>
+            <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
+                type="email" name="email" maxlength="254" id="id_email">
+        </div>
+
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="id_minimum_salary">Minimum salary:</label>
+            <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
+                type="number" name="minimum_salary" id="id_minimum_salary">
+        </div>
+
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="id_password1">Password:</label>
+            <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
+                type="password" name="password1" autocomplete="new-password" required
+                aria-describedby="id_password1_helptext" id="id_password1">
+            <div class="helptext" id="id_password1_helptext">
+                <ul>
+                    <p><small>Your password can’t be too similar to your other personal information.</small></p>
+                    <p><small>Your password must contain at least 8 characters.</small></p>
+                    <p><small>Your password can’t be a commonly used password.</small></p>
+                    <p><small>Your password can’t be entirely numeric.</small></p>
+                </ul>
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="id_password2">Password confirmation:</label>
+            <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
+                type="password" name="password2" autocomplete="new-password" required
+                aria-describedby="id_password2_helptext" id="id_password2">
+        </div>
+
+        <button
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit">
+            Create Account
+        </button>
+    </form>
+
+</div>
+
+{% endblock content %}

@@ -71,6 +71,7 @@ def delete_expense(request, id):
 def signup(request):
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)
+        # print(form)
         if form.is_valid():
             user = form.save()
             login(request, user)
