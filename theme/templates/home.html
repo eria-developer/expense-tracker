@@ -8,6 +8,21 @@
 
 <div class="container mx-16 mt-4">
 
+
+    <div class="mx-auto my-4">
+        {% if messages %}
+        <ul>
+            {%for message in messages %}
+            <li
+                class="text-center {%if message.level == messages.SUCCESS%} text-green-600 {%elif messages.level == messages.ERROR%} text-red-600 {%endif%}">
+                {{message}}
+            </li>
+            {%endfor%}
+        </ul>
+        {%endif%}
+    </div>
+
+
     <div class="flex gap-4 mb-4">
         <div class="flex-initial bg-gray-300 rounded py-2 px-8  w-1/4">Hey <strong>
                 {{ user}}</strong>, am glad to
@@ -15,9 +30,31 @@
     </div>
 
     <div class="flex gap-4">
+        <div class="flex-initial bg-gray-200 rounded py-4 px-8 w-1/3">
+            <h1>Current Month Budget: <span class="bg-gray-400 rounded px-2 py-1 text-gray-100 font-bold">300000</span>
+            </h1>
+            <a href="{% url 'set_budget' %}">
+                <button class="bg-indigo-600 py-1 px-2 rounded mt-2 text-gray-200 font-bold">Set New</button>
+            </a>
+        </div>
+
+        <div class="flex-initial bg-gray-200 rounded py-4 px-8 w-1/3">
+            <h1>Current Month Total Expense : <span
+                    class="bg-gray-400 rounded px-2 py-1 text-gray-100 font-bold">300000</span>
+            </h1>
+            <a href="{% url 'add_expense' %}">
+                <button class="bg-indigo-600 py-1 px-2 rounded mt-2 text-gray-200 font-bold">Add Expense</button>
+            </a>
+        </div>
+
         <div class="flex-initial bg-gray-200 rounded py-4 px-8">
-            <h1>Current Month Budget: {{budget}}</h1>
-            <button class="bg-indigo-600 py-1 px-2 rounded mt-2 text-gray-200 font-bold">Set New</button>
+            <h1><span class="bg-gray-400 rounded px-2 py-1 text-gray-100 font-bold">30</span><span class="ml-3">days
+                    remaining to the end of the month</span>
+            </h1>
+            <h1 class="mt-4"><span class="bg-gray-400 rounded px-2 py-1 text-gray-100 font-bold">300000</span><span
+                    class="ml-3">shillings
+                    remaining to reach your monthly budget</span>
+            </h1>
         </div>
     </div>
 </div>

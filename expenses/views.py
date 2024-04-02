@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Expense
-from .forms import AddExpenseForm, EditExpenseForm, CustomUserCreationForm
+from .models import Expense, Budget
+from .forms import AddExpenseForm, EditExpenseForm, CustomUserCreationForm, setBudgetForm
 from django.db.models import F
 from django.contrib import messages
 from django.contrib.auth import login
@@ -8,7 +8,11 @@ from django.contrib.auth import login
 
 def home(request):
     """manages the homepage"""
-    return render(request, "home.html")
+    budget = Budget.objects.all()
+    context = {
+        "budget": budget
+    }
+    return render(request, "home.html", context)
 
 def add_expense(request):
     """handles adding new expense"""
@@ -83,3 +87,18 @@ def signup(request):
             "form": form
         }
     return render(request, "expenses/signup.html", context)
+
+
+def set_budget(request):
+    if request.method == "POST":
+        form = setBudgetForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your monthly budget has been set successfully!!")
+            return redirect("home")
+    else:
+        form = setBudgetForm()
+        context = {
+            "form": form,
+        }
+        return render(request, "expenses/setbudget.html", context)
