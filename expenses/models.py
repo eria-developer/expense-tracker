@@ -23,3 +23,10 @@ class Expense(models.Model):
 
     def __str__(self):
         return f"{self.name.title()} Qnt: {self.quantity} UnitAmount: {self.unit_amount}"
+    
+
+class Budget(models.Model):
+    budget = models.IntegerField()
+
+    def __str__(self):
+        return f"Current Budget: {self.budget}"
