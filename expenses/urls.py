@@ -7,4 +7,6 @@ urlpatterns = [
     path("edit_expense/<int:id>", views.edit_expense, name="edit_expense"),
     path("delete_expense/<int:id>", views.delete_expense, name="delete_expense"),
     path("set_budget/", views.set_budget, name="set_budget"),
+
+    path("chart_data/", views.chart_data, name="chart_data")
 ]

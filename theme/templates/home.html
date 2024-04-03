@@ -58,9 +58,43 @@
         </div>
     </div>
     <div class="flex gap-4 mt-4">
-        <div class="w-3/4 h-96 bg-violet-400 rounded flex-initial">h</div>
+        <div class="w-3/4 h-96 bg-violet-400 rounded flex-initial">
+            <canvas id="expensesChart"></canvas>
+
+        </div>
         <div class="w-1/4 h-96 bg-violet-400 rounded">h</div>
     </div>
 </div>
 
+
 {% endblock content %}
+
+{% block extra_js %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    $(document).ready(function () {
+        // Declare ctx in the outer scope
+        const ctx = document.getElementById('expensesChart').getContext('2d');
+
+        $.ajax({
+            url: "{% url 'chart_data' %}",
+            dataType: 'json',
+            success: function (data) {
+                const chart = new Chart(ctx, {  // Use the defined ctx here
+                    type: 'bar',
+                    data: {
+                        labels: data.labels,
+                        datasets: [{
+                            label: 'Monthly Expenses',
+                            data: data.data
+                        }]
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+
+{% endblock extra_js %}
