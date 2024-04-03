@@ -67,6 +67,8 @@ def home(request):
     """manages the homepage"""
     budget = Budget.objects.all()
 
+    recent_expenses = Expense.objects.order_by("-date")[:5]
+
     # Calculate the date 12 months ago from today
     twelve_months_ago = date.today() - timedelta(days=365)
 
@@ -82,6 +84,7 @@ def home(request):
     context = {
         "budget": budget,
         "expenses_by_month": expenses_by_month_list,
+        "recent_expenses": recent_expenses,
     }
     return render(request, "home.html", context)
 
